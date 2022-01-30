@@ -37,7 +37,7 @@ const ALLOWED_ORIGINS = [
   "http://localhost:3000",
 ];
 
-function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const origin = req.headers.origin;
 
   if (ALLOWED_ORIGINS.includes(origin)) {
