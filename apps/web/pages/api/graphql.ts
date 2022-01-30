@@ -1,5 +1,5 @@
 import { ApolloServer, gql } from "apollo-server-micro";
-import cors from "cors";
+import corsPackage from "cors";
 import type { NextApiRequest, NextApiResponse } from "next";
 /*
   TODO
@@ -10,6 +10,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
   - Think about file structure
 
 */
+
+const cors = corsPackage({
+  origin: "https://studio.apollographql.com",
+  exposeHeaders: ["content-type"],
+});
 
 const typeDefs = gql`
   type Query {
@@ -38,29 +43,13 @@ const ALLOWED_ORIGINS = [
 ];
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const origin = req.headers.origin;
-
-  if (ALLOWED_ORIGINS.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-
-  if (req.method === "OPTIONS") {
-    res.end();
-    return false;
-  }
-
   await startServer;
   await apolloServer.createHandler({
     path: "/api/graphql",
   })(req, res);
 }
 
-export default handler;
+export default cors(handler);
 
 export const config = {
   api: {
