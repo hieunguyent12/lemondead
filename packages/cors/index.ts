@@ -52,7 +52,6 @@ const cors =
 
     // Check if the request origin is whitelisted
     if (origins.includes(ORIGIN)) {
-      console.log(ORIGIN);
       res.setHeader("Access-Control-Allow-Origin", ORIGIN);
     }
 
