@@ -13,7 +13,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const cors = corsPackage({
   origin: "https://studio.apollographql.com",
-  exposeHeaders: ["content-type"],
 });
 
 const typeDefs = gql`
