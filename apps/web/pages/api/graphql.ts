@@ -60,7 +60,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   })(req, res);
 }
 
-export default cors(handler);
+export default handler;
 
 export const config = {
   api: {
