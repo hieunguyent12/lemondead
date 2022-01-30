@@ -1,13 +1,19 @@
-import { ApolloServer, gql } from "apollo-server-micro";
+import { ApolloServer } from "apollo-server-micro";
 import corsPackage from "cors";
 import type { NextApiRequest, NextApiResponse } from "next";
+import resolvers from "../../graphql/resolvers";
+// @ts-ignore
+import typeDefs from "../../graphql/schema.graphql";
+
 /*
   TODO
-
-  - Move graphql types to separate file
-  - Generate typescript types from schema
   - Connect to prisma
   - Think about file structure
+  - tailwind
+
+
+  ******** THIS API IS JUST TEMPORARY *********
+  In the the future, we will have a separate server to handle graphql requests
 
 */
 const ALLOWED_ORIGINS = [
@@ -18,23 +24,6 @@ const ALLOWED_ORIGINS = [
 const cors = corsPackage({
   origins: ALLOWED_ORIGINS,
 });
-
-const typeDefs = gql`
-  type Query {
-    users: [User!]!
-  }
-  type User {
-    name: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    users(parent, args, context) {
-      return [{ name: "Next js" }];
-    },
-  },
-};
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 

@@ -43,16 +43,8 @@ const cors =
       exposeHeaders = [],
     } = options;
 
-    const ORIGIN = req.headers.origin;
-
-    if (!ORIGIN) {
-      res.end();
-      return false;
-    }
-
-    // Check if the request origin is whitelisted
-    if (origins.includes(ORIGIN)) {
-      res.setHeader("Access-Control-Allow-Origin", ORIGIN);
+    if (req.headers.origin && origins.includes(req.headers.origin)) {
+      res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
     }
 
     res.setHeader("Access-Control-Allow-Credentials", "true");
