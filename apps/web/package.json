@@ -7,25 +7,37 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "echo test"
+    "test": "echo test",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "apollo-server": "^3.6.2",
     "apollo-server-micro": "^3.6.2",
+    "cors": "*",
     "graphql": "^16.2.0",
     "micro": "^9.3.4",
     "next": "12.0.7",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "ui": "*",
-    "cors": "*",
-    "server": "*"
+    "server": "*",
+    "ui": "*"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@storybook/addon-actions": "^6.4.16",
+    "@storybook/addon-essentials": "^6.4.16",
+    "@storybook/addon-links": "^6.4.16",
+    "@storybook/react": "^6.4.16",
+    "@tailwindcss/postcss7-compat": "^2.2.17",
     "@types/react": "17.0.37",
+    "autoprefixer": "^9",
+    "babel-loader": "^8.2.3",
     "config": "*",
     "eslint": "7.32.0",
     "next-transpile-modules": "9.0.0",
+    "postcss": "^7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "tsconfig": "*",
     "typescript": "^4.5.3"
   }
