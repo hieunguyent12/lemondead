@@ -1,5 +1,15 @@
 import { ApolloServer, gql } from "apollo-server-micro";
+import cors from "cors";
 import type { NextApiRequest, NextApiResponse } from "next";
+/*
+  TODO
+
+  - Move graphql types to separate file
+  - Generate typescript types from schema
+  - Connect to prisma
+  - Think about file structure
+
+*/
 
 const typeDefs = gql`
   type Query {
@@ -24,13 +34,10 @@ const startServer = apolloServer.start();
 
 const ALLOWED_ORIGINS = [
   "https://studio.apollographql.com",
-  "http://localhost:3000/",
+  "http://localhost:3000",
 ];
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+function handler(req: NextApiRequest, res: NextApiResponse) {
   const origin = req.headers.origin;
 
   if (ALLOWED_ORIGINS.includes(origin)) {
@@ -52,6 +59,8 @@ export default async function handler(
     path: "/api/graphql",
   })(req, res);
 }
+
+export default cors(handler);
 
 export const config = {
   api: {
