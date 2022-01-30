@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 interface TCorsOptions {
-  origin?: string;
+  origins?: string[];
   maxAge?: string;
   allowMethods?: string[];
   allowHeaders?: string[];
@@ -35,7 +35,7 @@ const cors =
   (handler: any) =>
   (req: NextApiRequest, res: NextApiResponse, ...restArgs: any) => {
     const {
-      origin = "*",
+      origins = "*",
       maxAge = DEFAULT_MAX_AGE_SECONDS,
       allowMethods = DEFAULT_ALLOW_METHODS,
       allowHeaders = DEFAULT_ALLOW_HEADERS,
@@ -43,33 +43,29 @@ const cors =
       exposeHeaders = [],
     } = options;
 
-    res.setHeader("Access-Control-Allow-Origin", origin);
+    const ORIGIN = req.headers.origin;
+
+    if (!ORIGIN) {
+      res.end();
+      return false;
+    }
+
+    // Check if the request origin is whitelisted
+    if (origins.includes(ORIGIN)) {
+      console.log(ORIGIN);
+      res.setHeader("Access-Control-Allow-Origin", ORIGIN);
+    }
 
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader(
       "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     );
 
     if (req.method === "OPTIONS") {
       res.end();
       return false;
     }
-
-    // res.setHeader("Access-Control-Allow-Origin", origin);
-    // if (allowCredentials) {
-    //   res.setHeader("Access-Control-Allow-Credentials", "true");
-    // }
-
-    // const preFlight = req.method === "OPTIONS";
-    // if (preFlight) {
-    //   // res.setHeader('Access-Control-Allow-Methods', allowMethods.join(','))
-    //   // res.setHeader('Access-Control-Allow-Headers', allowHeaders.join(','))
-    //   // res.setHeader('Access-Control-Max-Age', String(maxAge));
-
-    //   res.end();
-    //   return false;
-    // }
 
     return handler(req, res, ...restArgs);
   };

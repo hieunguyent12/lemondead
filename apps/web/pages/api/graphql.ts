@@ -10,9 +10,13 @@ import type { NextApiRequest, NextApiResponse } from "next";
   - Think about file structure
 
 */
+const ALLOWED_ORIGINS = [
+  "https://studio.apollographql.com",
+  "http://localhost:3000",
+];
 
 const cors = corsPackage({
-  origin: "https://studio.apollographql.com",
+  origins: ALLOWED_ORIGINS,
 });
 
 const typeDefs = gql`
@@ -27,7 +31,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     users(parent, args, context) {
-      return [{ name: "Nextjs" }];
+      return [{ name: "Next js" }];
     },
   },
 };
@@ -35,11 +39,6 @@ const resolvers = {
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 
 const startServer = apolloServer.start();
-
-const ALLOWED_ORIGINS = [
-  "https://studio.apollographql.com",
-  "http://localhost:3000",
-];
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   await startServer;
