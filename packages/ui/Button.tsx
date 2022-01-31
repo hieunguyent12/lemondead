@@ -1,4 +1,8 @@
 import * as React from "react";
 export const Button = () => {
-  return <button>Boop</button>;
+  return (
+    <div className="bg-red-500">
+      <p>Hi</p>
+    </div>
+  );
 };

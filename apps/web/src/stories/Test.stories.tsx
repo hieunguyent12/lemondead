@@ -1,16 +1,10 @@
-function Test() {
-  return (
-    <div className="bg-red-400">
-      <p>Hi</p>
-    </div>
-  );
-}
+import { Button } from "ui";
 
 export default {
-  component: Test,
-  title: "Test",
+  Component: Button,
+  title: "Button",
 };
 
-const Template = (args) => <Test {...args} />;
+const Template = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});

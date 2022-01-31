@@ -6,15 +6,8 @@ import resolvers from "../../graphql/resolvers";
 import typeDefs from "../../graphql/schema.graphql";
 
 /*
-  TODO
-  - Connect to prisma
-  - Think about file structure
-  - tailwind
-
-
   ******** THIS API IS JUST TEMPORARY *********
   In the the future, we will have a separate server to handle graphql requests
-
 */
 const ALLOWED_ORIGINS = [
   "https://studio.apollographql.com",
