@@ -1,5 +1,5 @@
-import * as React from "react";
-// import SettingsIcon from "../../apps/web/src/icons/Settings";
+import React from "react";
+import SettingsIcon from "../../apps/web/src/icons/Settings";
 
 export type AvatarMenuProps = {};
 
