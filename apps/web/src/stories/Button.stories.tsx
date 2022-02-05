@@ -29,4 +29,10 @@ Primary.argTypes = {
       type: "boolean",
     },
   },
+  size: {
+    options: ["regular", "small"],
+    control: {
+      type: "radio",
+    },
+  },
 };

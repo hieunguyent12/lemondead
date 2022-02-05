@@ -6,7 +6,8 @@ const colors = {
 };
 
 const sizes = {
-  regular: "py-2 px-4",
+  regular: "py-1 px-4",
+  small: "py-0.5 px-2.5 text-sm",
 };
 
 export type ButtonProps = {
