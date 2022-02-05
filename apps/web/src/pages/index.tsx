@@ -4,7 +4,9 @@ export default function Web() {
   return (
     <div>
       <h1 className="bg-slate-400">Web</h1>
-      <Button />
+      <Button variant="primary" size="regular">
+        Primary
+      </Button>
     </div>
   );
 }
